@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group 'org.kodilla'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'net.bytebuddy:byte-buddy:1.10.13'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    jar {
+        from {
+            configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+        }
+        manifest {
+            attributes "Premain-Class": 'com.kodilla.Agent',
+                    "Can-Redefine-Classes" : "true",
+                    "Can-Retransform-Classes" : "true"
+
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+

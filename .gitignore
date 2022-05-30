@@ -1,0 +1,6 @@
+# Project exclude paths
+/.gradle/
+/build/
+/build/classes/java/main/
+/kodilla-agent/build/
+/kodilla-agent/build/classes/java/main/
